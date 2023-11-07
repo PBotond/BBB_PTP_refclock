@@ -22,11 +22,11 @@ jobs:
 #    - name: make distcheck
 #      run: make distcheck
 
-  c-linter:
-    name: c-linter
+  clang-tidy:
+    name: clang-tidy
     runs-on: ubuntu-latest
     steps:
-      - name: c-linter
-        uses: ArtificialAmateur/cpp-linter-action@master
+      - name: clang-tidy check
+        uses: smay1613/clang-tidy-action@master
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
