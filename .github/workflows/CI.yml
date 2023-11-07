@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    name: build-make
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +22,11 @@ jobs:
 #    - name: make distcheck
 #      run: make distcheck
 
-  clang-tidy:
-    name: clang-tidy
+  c-linter:
+    name: c-linter
     runs-on: ubuntu-latest
     steps:
-      - name: clang-tidy check
-        uses: smay1613/clang-tidy-action@master
+      - name: c-linter
+        uses: ArtificialAmateur/cpp-linter-action@master
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
