@@ -6,7 +6,7 @@ off_t alignAddress(const unsigned long addr)
     return addr & ~(PAGE_SIZE - 1);
 }
 
-int j721e_CPTS_init(void *addr, struct j721e_CPTS *cpts)
+int j721e_CPTS_init(void *addr, CPTS_t *cpts)
 {
     cpts->fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (cpts->fd == -1)
@@ -28,7 +28,7 @@ int j721e_CPTS_init(void *addr, struct j721e_CPTS *cpts)
     return 0;
 }
 
-int j721e_CPTS_close(struct j721e_CPTS *cpts)
+int j721e_CPTS_close(CPTS_t *cpts)
 {
     if(munmap(cpts->base, cpts->length) == -1)
     {
@@ -37,4 +37,15 @@ int j721e_CPTS_close(struct j721e_CPTS *cpts)
     }
     close(cpts->fd);
     return 0;
+}
+
+uint32_t j721e_read_reg(CPTS_t *cpts, CPTS_reg_names_t regName)
+{
+    volatile uint32_t *mem32 = (volatile uint32_t *)(cpts->base + (regName - alignAddress(CPSW_CPTS_BEGIN)));
+    return *mem32;
+}
+
+void j721e_print_all_regs (CPTS_t *cpts)
+{
+    return;
 }

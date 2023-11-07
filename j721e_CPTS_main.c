@@ -16,9 +16,7 @@ int main(void)
         break;
     }
 
-    size_t phys_offset = CPSW_CPTS_BEGIN - alignAddress(CPSW_CPTS_BEGIN);
-    volatile uint32_t *mem32 = (volatile uint32_t *)cpts.base + phys_offset;
-    printf("value: 0x%08X\n", mem32[0]);
+    printf("value: 0x%08X\n", j721e_read_reg(&cpts, IDVER_REG));
 
     if (j721e_CPTS_close(&cpts) == -1)
     {

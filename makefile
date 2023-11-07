@@ -1,18 +1,17 @@
-
 CC = aarch64-linux-gnu-gcc
 CFLAGS = -Wall -Wextra
 
 DEBUG_FLAGS = -g
 RELEASE_FLAGS = -O2
 
-DEBUG_TARGET = j721e_CPTS_main_debug
-RELEASE_TARGET = j721e_CPTS_main_release
+DEBUG_TARGET = bin/j721e_CPTS_debug
+RELEASE_TARGET = bin/j721e_CPTS_release
 
 SRC_FILES = j721e_CPTS_main.c j721e_CPTS_functions.c 
 
-.PHONY: all debug release clean
+.PHONY: all debug release clean check
 
-all: debug release
+all: debug release check
 
 debug: $(DEBUG_TARGET)
 
@@ -23,6 +22,9 @@ $(DEBUG_TARGET): $(SRC_FILES)
 
 $(RELEASE_TARGET): $(SRC_FILES)
 	$(CC) $(CFLAGS) $(RELEASE_FLAGS) $^ -o $@
+
+check:
+	$(CC) $(CFLAGS) -fsyntax-only $(SRC_FILES)
 
 clean:
 	rm -f $(DEBUG_TARGET) $(RELEASE_TARGET)

@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# binary files
+bin/j721e_CPTS_debug
+bin/j721e_CPTS_release

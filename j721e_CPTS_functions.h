@@ -10,18 +10,22 @@
 
 #define PAGE_SIZE sysconf(_SC_PAGESIZE)
 
-struct j721e_CPTS
+typedef struct j721e_CPTS
 {
     struct j721e_CPTS_regs regs;
-    void* base;
+    void *base;
     int fd;
     size_t length;
-};
+} CPTS_t;
 
 off_t alignAddress(const unsigned long addr);
 
-int j721e_CPTS_init(void *addr, struct j721e_CPTS *cpts);
+int j721e_CPTS_init(void *addr, CPTS_t *cpts);
 
-int j721e_CPTS_close(struct j721e_CPTS *cpts);
+int j721e_CPTS_close(CPTS_t *cpts);
+
+uint32_t j721e_read_reg(CPTS_t *cpts, CPTS_reg_names_t regName);
+
+void j721e_print_all_regs(CPTS_t *cpts);
 
 #endif // J721E_CPTS_FUNCTIONS_H
