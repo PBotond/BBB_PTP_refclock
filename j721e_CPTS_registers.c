@@ -1,0 +1,40 @@
+#include "j721e_CPTS_registers.h"
+
+const size_t CPTS_GENF_START[CPTS_GENF_REG_MAX] = {CPTS_GENF_BEGIN};
+const size_t CPTS_ESTF_START[CPTS_ESTF_REG_MAX] = {CPTS_ESTF_BEGIN};
+
+const char* j721e_CPTS_reg_strings[CPTS_REG_COUNT] = {
+    "IDVER_REG",
+    "CONTROL_REG",
+    "RFTCLK_SEL_REG",
+    "TS_PUSH_REG",
+    "TS_LOAD_VAL_REG",
+    "TS_LOAD_EN_REG",
+    "TS_COMP_VAL_REG",
+    "TS_COMP_LEN_REG",
+    "INTSTAT_RAW_REG",
+    "INTSTAT_MASKED_REG",
+    "INT_ENABLE_REG",
+    "TS_COMP_NUDGE_REG",
+    "EVENT_POP_REG",
+    "EVENT_0_REG",
+    "EVENT_1_REG",
+    "EVENT_2_REG",
+    "EVENT_3_REG",
+    "TS_LOAD_HIGH_VAL_REG",
+    "TS_COMP_HIGH_VAL_REG",
+    "TS_ADD_VAL_REG",
+    "TS_PPM_LOW_VAL_REG",
+    "TS_PPM_HIGH_VAL_REG",
+    "TS_NUDGE_VAL_REG",
+};
+
+const char* j721e_CPTS_GENF_reg_strings[CPTS_GENF_REG_COUNT] = {
+    "GENF_COMP_LOW_REG",
+    "GENF_COMP_HIGH_REG",
+    "GENF_CONTROL_REG",
+    "GENF_LENGTH_REG",
+    "GENF_PPM_LOW_REG",
+    "GENF_PPM_HIGH_REG",
+    "GENF_NUDGE_REG"
+};

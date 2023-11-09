@@ -16,7 +16,7 @@ int main(void)
         break;
     }
 
-    printf("value: 0x%08X\n", j721e_read_reg(&cpts, IDVER_REG));
+    j721e_CPTS_print_all_regs(&cpts);
 
     if (j721e_CPTS_close(&cpts) == -1)
     {

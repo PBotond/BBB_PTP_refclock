@@ -7,7 +7,7 @@ RELEASE_FLAGS = -O2
 DEBUG_TARGET = bin/j721e_CPTS_debug
 RELEASE_TARGET = bin/j721e_CPTS_release
 
-SRC_FILES = j721e_CPTS_main.c j721e_CPTS_functions.c 
+SRC_FILES = j721e_CPTS_main.c j721e_CPTS_functions.c  j721e_CPTS_registers.c
 
 .PHONY: all debug release clean check
 
