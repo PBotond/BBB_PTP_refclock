@@ -1,6 +1,6 @@
 #include "j721e_CPTS_functions.h"
 
-size_t alignAddress(const size_t addr)
+off_t alignAddress(const size_t addr)
 {
     return addr & ~(PAGE_SIZE - 1);
 }
@@ -18,8 +18,8 @@ int j721e_CPTS_init(void *addr, CPTS_t *cpts)
         return -1;
     }
 
-    size_t phys_begin = alignAddress(CPTS_BEGIN);
-    size_t phys_end = alignAddress(CPTS_END);
+    off_t phys_begin = alignAddress(CPTS_BEGIN);
+    off_t phys_end = alignAddress(CPTS_END);
     cpts->length = phys_end - phys_begin + (size_t)PAGE_SIZE;
 
     cpts->base = mmap(addr, cpts->length, PROT_READ | PROT_WRITE, MAP_SHARED, cpts->fd, phys_begin);
@@ -60,11 +60,36 @@ uint32_t j721e_CPTS_read_reg(CPTS_t *cpts, CPTS_reg_names_t regName)
     return cpts->regs.CPTS_regs[0][regName];
 }
 
+uint32_t j721e_CPTS_read_GENF_reg(CPTS_t *cpts, CPTS_GENF_reg_names_t regName, int num)
+{
+    return cpts->regs.GENF_regs[num][0][regName];
+}
+
+uint32_t j721e_CPTS_read_ESTF_reg(CPTS_t *cpts, CPTS_GENF_reg_names_t regName, int num)
+{
+    return cpts->regs.ESTF_regs[num][0][regName];
+}
+
 void j721e_CPTS_print_all_regs(CPTS_t *cpts)
 {
     for (size_t i = 0; i < CPTS_REG_COUNT; i++)
     {
         printf("%s: 0x%08X\n", j721e_CPTS_reg_strings[i], j721e_CPTS_read_reg(cpts, i));
+    }
+
+    for (size_t i = 0; i < CPTS_GENF_REG_MAX; i++)
+    {
+        for (size_t j = 0; j < CPTS_GENF_REG_COUNT; j++)
+        {
+            printf("GENF%ld_%s: 0x%08X\n", i, j721e_CPTS_GENF_reg_strings[j], j721e_CPTS_read_GENF_reg(cpts, j, i));	
+        }        
+    }
+    for (size_t i = 0; i < CPTS_ESTF_REG_MAX; i++)
+    {
+        for (size_t j = 0; j < CPTS_GENF_REG_COUNT; j++)
+        {
+            printf("ESTF%ld_%s: 0x%08X\n", i, j721e_CPTS_GENF_reg_strings[j], j721e_CPTS_read_ESTF_reg(cpts, j, i));	
+        }        
     }
 
     return;

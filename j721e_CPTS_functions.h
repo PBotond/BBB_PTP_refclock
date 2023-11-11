@@ -19,7 +19,7 @@ typedef struct j721e_CPTS
     size_t length;
 } CPTS_t;
 
-size_t alignAddress(const size_t addr);
+off_t alignAddress(const size_t addr);
 size_t makeOffset(const size_t addr);
 
 int j721e_CPTS_init(void *addr, CPTS_t *cpts);
@@ -27,6 +27,8 @@ int j721e_CPTS_init(void *addr, CPTS_t *cpts);
 int j721e_CPTS_close(CPTS_t *cpts);
 
 uint32_t j721e_CPTS_read_reg(CPTS_t *cpts, CPTS_reg_names_t regName);
+uint32_t j721e_CPTS_read_GENF_reg(CPTS_t *cpts, CPTS_GENF_reg_names_t regName, int num);
+uint32_t j721e_CPTS_read_ESTF_reg(CPTS_t *cpts, CPTS_GENF_reg_names_t regName, int num);
 
 void j721e_CPTS_print_all_regs(CPTS_t *cpts);
 
