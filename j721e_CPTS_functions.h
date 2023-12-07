@@ -32,4 +32,6 @@ uint32_t j721e_CPTS_read_ESTF_reg(CPTS_t *cpts, CPTS_GENF_reg_names_t regName, i
 
 void j721e_CPTS_print_all_regs(CPTS_t *cpts);
 
+void printHelp();
+
 #endif // J721E_CPTS_FUNCTIONS_H

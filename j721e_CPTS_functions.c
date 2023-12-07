@@ -94,3 +94,12 @@ void j721e_CPTS_print_all_regs(CPTS_t *cpts)
 
     return;
 }
+
+void printHelp()
+{
+    printf("Usage: j721e_CPTS_userspace_driver [-h]\n");
+    printf("  -h: help\n");
+    printf("  -a: print all registers once\n");
+    printf("  -f: monitor event FIFO\n");
+    return;
+}

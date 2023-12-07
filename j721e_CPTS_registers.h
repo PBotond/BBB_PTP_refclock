@@ -7,6 +7,7 @@
 /****************************************************
  * switch between CPTS peripherals of the processor *
  ***************************************************/
+//#define USE_MCU_CPSW0_CPTS
 #define USE_MCU_CPSW0_CPTS
 
 #ifdef USE_MCU_CPSW0_CPTS
